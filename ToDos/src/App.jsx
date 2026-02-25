@@ -11,7 +11,9 @@ import JobsPage from './Pages/JobsPage';
 import NotFoundPage from './Pages/NotFoundPage';
 import Job,{jobLoader} from './Pages/job';
 import AddJobPage from './Pages/AddJobPage';
-
+import EditJobPage from './Pages/EditJobPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const App = () => {
@@ -36,6 +38,18 @@ const deleteJob=async(id)=>{
   return;
 }
 
+const updatejob=async(job)=>{
+const res=await fetch(`/api/jobs/${job.id}`,{
+    method:'PUT',
+    headers:{
+      'Content-Type':'application/json',
+    },
+    body:JSON.stringify(job),
+    
+  })
+  return;
+}
+
 
 
 const router = createBrowserRouter(
@@ -49,11 +63,17 @@ const router = createBrowserRouter(
       <Route path='*' element={<NotFoundPage />} />
       <Route path='*' element={<NotFoundPage />} />
       <Route path='/add-job' element={<AddJobPage addJobSubmit={addJob}/>} />
+      <Route path='/edit-job/:id' element={<EditJobPage updatedJobSubmit={updatejob}/>} loader={jobLoader} />
     </Route>
 
   )
 )
-  return <RouterProvider router={router} />
+  return (
+    <>
+      <RouterProvider router={router} />
+      <ToastContainer />
+    </>
+  )
 }
 
 export default App;
