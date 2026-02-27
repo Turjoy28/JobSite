@@ -1,17 +1,20 @@
-import React from 'react'
 import { FaExclamationTriangle } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+
 const NotFoundPage = () => {
   return (
-       <section class="text-center flex flex-col justify-center items-center h-96">
-        <FaExclamationTriangle className='text-yellow-200 text-6xl mb-4'/>
-      <h1 class="text-6xl font-bold mb-4">404 Not Found</h1>
-      <p class="text-xl mb-5">This page does not exist</p>
-      <Link
-        to="/"
-        class="text-white bg-indigo-700 hover:bg-indigo-900 rounded-md px-3 py-2 mt-4"
-        >Go Back</Link
-      >
+    <section className="not-found-page flex flex-col justify-center items-center min-h-screen text-center px-4">
+      <div className="not-found-icon mb-6">
+        <FaExclamationTriangle className="text-8xl text-yellow-400" />
+      </div>
+      <h1 className="not-found-code text-9xl mb-4">404</h1>
+      <h2 className="text-2xl font-bold mb-3" style={{ color: 'var(--text-primary)' }}>Page Not Found</h2>
+      <p className="mb-8 max-w-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+        Oops! The page you're looking for doesn't exist or has been moved.
+      </p>
+      <Link to="/" className="btn-primary text-base px-8 py-3">
+        ← Go Back Home
+      </Link>
     </section>
   )
 }
